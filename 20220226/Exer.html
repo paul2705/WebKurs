@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes Skretch {
+            from {background-color: aquamarine; width: 50px;}
+            to {background-color: blueviolet; width: 300px; }
+        }
+        p{
+            color: rgba(153, 76, 216, 0.747);
+        }
+        #box1{
+            background: lightblue;
+            width: 50px;
+            height: 150px;
+            margin-bottom: 20px;
+            cursor: zoom-in;
+            animation-name: Skretch;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        #box2{
+            background: lightblue;
+            width: 50px;
+            height: 150px;
+            margin-bottom: 20px;
+            transition: 4s;
+        }
+        #box2:hover{
+            width: 300px;
+            background-color: blue; 
+        }
+        a.transfer:hover{
+            font-size: larger;
+            color: red;
+        }
+    </style>
+</head>
+<body background="./background.jpg" style="background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+    <p>
+        Exercise
+    </p>
+    <h1>
+        Exercise for HTML and CSS
+    </h1>
+    <div id="box1" class="box">box1</div>
+    <div id="box2" class="box">box2</div>
+    <a href="./test.html" id="transfer1" class="transfer">Test</a> 
+</body>
+</html>
