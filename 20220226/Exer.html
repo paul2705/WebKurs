@@ -7,35 +7,74 @@
     <title>Document</title>
     <style>
         @keyframes Skretch {
-            from {background-color: aquamarine; width: 50px;}
-            to {background-color: blueviolet; width: 300px; }
+            from {width: 50px;}
+            to {width: 300px; }
         }
         p{
             color: rgba(153, 76, 216, 0.747);
         }
-        #box1{
-            background: lightblue;
+        #margin1{
             width: 50px;
-            height: 150px;
+            height: 50px;
+            float: left;
+        }
+        .box{
+            width: 50px;
+            height: 400px;
+            margin-top: 50px;
             margin-bottom: 20px;
-            cursor: zoom-in;
+            transition: 5s;
+        }
+        /*cursor: zoom-in;
             animation-name: Skretch;
             animation-duration: 5s;
-            animation-iteration-count: infinite;
-        }
-        #box2{
-            background: lightblue;
-            width: 50px;
-            height: 150px;
-            margin-bottom: 20px;
-            transition: 4s;
-        }
-        #box2:hover{
+            animation-iteration-count: 2;*/
+        #box1{ background: url("./box1.png") no-repeat; background-size: cover; float: left; }
+        #box2{ background: url("./box2.png") no-repeat; background-size: cover; float: left; }
+        #box4{ background: url("./box4.png") no-repeat; background-size: cover; float: left; }
+        #box5{ background: url("./box5.png") no-repeat; background-size: cover; float: left; }
+        #box6{ background: url("./box6.png") no-repeat; background-size: cover; float: left; }
+        #box7{ background: url("./box7.png") no-repeat; background-size: cover; float: left; }
+        #box8{ background: url("./box8.png") no-repeat; background-size: cover; float: left; }
+        #box9{ background: url("./box9.jpg") no-repeat; background-size: cover; float: left; }
+        #box10{ background: url("./box10.png") no-repeat; background-size: cover; float: left; }
+        #box11{ background: url("./box11.png") no-repeat; background-size: cover; float: left; }
+        #box12{ background: url("./box12.png") no-repeat; background-size: cover; float: left; }
+        #box13{ background: url("./box13.png") no-repeat; background-size: cover; float: left; }
+        #box14{ background: url("./box14.png") no-repeat; background-size: cover; float: left; }
+        #box15{ background: url("./box15.jpg") no-repeat; background-size: cover; float: left; }
+        #box16{ background: url("./box16.jpg") no-repeat; background-size: cover; float: left; }
+        #box17{ background: url("./box17.png") no-repeat; background-size: cover; float: left; }#box1:hover{ width: 300px; }
+        #box2:hover{ width: 300px; }
+        #box4:hover{ width: 300px; }
+        #box5:hover{ width: 300px; }
+        #box6:hover{ width: 300px; }
+        #box7:hover{ width: 300px; }
+        #box8:hover{ width: 300px; }
+        #box9:hover{ width: 300px; }
+        #box10:hover{ width: 300px; }
+        #box11:hover{ width: 300px; }
+        #box12:hover{ width: 300px; }
+        #box13:hover{ width: 300px; }
+        #box14:hover{ width: 300px; }
+        #box15:hover{ width: 300px; }
+        #box16:hover{ width: 300px; }
+        #box17:hover{ width: 300px; }
+        #herf1{
             width: 300px;
-            background-color: blue; 
+            height: 20px;
+            float: right;
         }
-        a.transfer:hover{
-            font-size: larger;
+        #herf1 span{
+            font-size: 0.5cm;
+            margin-right: 50px;
+            float: right;
+        }
+        #herf1 .transfer{
+            text-decoration: none;
+            color: black;
+        }
+        #herf1 a.transfer:hover{
             color: red;
         }
     </style>
@@ -47,8 +86,38 @@
     <h1>
         Exercise for HTML and CSS
     </h1>
-    <div id="box1" class="box">box1</div>
-    <div id="box2" class="box">box2</div>
-    <a href="./test.html" id="transfer1" class="transfer">Test</a> 
+    <h2>
+        Gallery
+    </h2>
+    <div id="margin1" class="margin"></div>
+    <div id="herf1" class="herf">
+        <span>
+            <a href="./test.html" id="transfer1" class="transfer">Test</a>
+        </span>
+        <span>
+            <a href="./Copy.html" id="transfer2" class="transfer">Copy</a>
+        </span>
+        <span>
+            <a herf="./Exer.html" id="transfer3" class="transfer">Exer</a>
+        </span>
+    </div>
+    <div>
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box4" class="box"></div>
+        <div id="box5" class="box"></div>
+        <div id="box6" class="box"></div>
+        <div id="box7" class="box"></div>
+        <div id="box8" class="box"></div>
+        <div id="box9" class="box"></div>
+        <div id="box10" class="box"></div>
+        <div id="box11" class="box"></div>
+        <div id="box12" class="box"></div>
+        <div id="box13" class="box"></div>
+        <div id="box14" class="box"></div>
+        <div id="box15" class="box"></div>
+        <div id="box16" class="box"></div>
+        <div id="box17" class="box"></div>
+    </div>
 </body>
 </html>
