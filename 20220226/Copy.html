@@ -5,40 +5,113 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      @keyframes Scroll {
+        from { height: 100px; }
+        to { height: 500px; }
+      }
+      body{
+        background-color: black;
+      }
+      #HeaderRight{
+        float: right;
+      }
+      div#HeaderLeft .Transfer{
+        text-decoration: none;
+        color: white;
+      }
+      div#HeaderLeft .Transfer:hover{
+        color: red;
+      }
+      div#HeaderRight .Transfer{
+        text-decoration: none;
+        color: white;
+      }
+      div#HeaderRight .Transfer:hover{
+        color: red;
+      }
+      div#Left #Margin1{
+        width: 30px;
+        height: 200px;
+      }
+      div#Left #Text1{
+        width: 600px;
+        height: 50px;
+        text-align: center;
+        font-size: 1cm;
+        color: white;
+      }
+      div#Left #Text2{
+        width: 700px;
+        height: 100px;
+        font-size: 3cm;
+        color: wheat;
+      }
+      div#Left #Text3{
+        width: 700px;
+        height: 500px;
+        font-size: 3cm;
+        color: wheat;
+        overflow: hidden;
+
+        animation-name: Scroll;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+      }
+      div#Right{
+        float: right;
+      }
+      div#Right #Margin1{
+        width: 300px;
+        height: 400px;
+      }
+      div#Right #Text1{
+        width: 500px;
+        font-size: 1cm;
+        text-align: left;
+        color: white;
+      }
+      div#Right #Text2{
+        width: 500px;
+        font-size: 1cm;
+        text-align: center;
+        color: grey;
+        transition: 1s;
+      }
+      div#Right #Text2:hover{
+        color: white;
+      }
+    </style>
   </head>
   <body>
-    <!--<div id="wrapper" class="pt_storefront">
-      <div class="uq_smt_banner">
-        <a
-          herf="https://yappli.plus/huelemuseum_smartbnr"
-          id="SmBnLink"
-          style="display: none;"
-        >
-        </a>
-      </div>
-    </div>-->
-    <div
-      id="cursor"
-      style="transform: translate3d(672.6px, 27.15px, 0px);"
-      class
-    >
-      <div
-        class="cursor__circle"
-        style="transform: rotate(-45deg) scale(1.00354, 0.996464);"
-      ></div>
+    <div id="HeaderRight" class="Header">
+      <a href="./Copy.html" id="Transfer3" class="Transfer">Begin</a>
     </div>
-    <div id="side__logo__mini">
-      <div class="mini">
-        <a
-          class="logo"
-          herf="https://www.huelemuseum.com/home/"
-          cursor-class="mini"
-        >
-          <img
-            src="https://www.huelemuseum.com/on/demandware.static/-/Sites/ja_JP/dw80c029cc/HLM/images/common/_l_logo_white.svg"
-            alt
-          />
-        </a>
+    <div id="HeaderLeft" class="Header">
+      <a href="./Demo.html" id="Transfer1" class="Transfer">START</a>
+      <a href="./Menu.html" id="Transfer2" class="Transfer">MENU</a>
+    </div>
+    <div id="Right" class="Context">
+      <div id="Margin1" class="Margin"></div>
+      <div id="Text1" class="Text">
+        Passion is the point
+      </div>
+      <div id="Text2" class="Text">
+        Read the manifesto
+      </div>
+    </div>
+    <div id="Left" class="Context">
+      <div id="Margin1" class="Margin"></div>
+      <div id="Text1" class="Text">
+        A Creative Journey 2012-2022
+      </div>
+      <div id="Text2" class="Text">
+        Silvia Sguotti
+      </div>
+      <div id="Text3" class="Text">
+        Designer <br>
+        Art Director <br>
+        Illustrator
       </div>
     </div>
   </body>
