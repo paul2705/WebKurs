@@ -5,9 +5,11 @@ const INIT_SCORE=10;
 const SelectMap=document.querySelector('.Map');
 const SelectStartButton=document.querySelector('.Start');
 const SelectScore=document.querySelector('.Score');
+const SelectTime=document.querySelector('.Time');
 let IsActive=false;
 let Position={ManX:0,ManY:0};
 let Score=0;
+let Time=0;
 
 const IsBound = (Position) =>{
     /* Check if robot's Position is out of bound
@@ -103,7 +105,10 @@ const CountScore = (Position) =>{
         Map[X][Y]=null;
     }
     SelectScore.textContent='Score: '+Score;
-    if (Score===100) alert('You Win!');
+    if (Score===100){
+        clearInterval(Timer);
+        alert("You Win!");
+    }
 }
 
 const ActiveStartButton = () =>{
@@ -136,8 +141,17 @@ document.onkeydown = (Event) =>{
     CountScore(Position);
 }
 
+const CountTime = () =>{
+    /* Count the Time 1s by 1s */
+    if (!IsActive) return;
+    Time++;
+    SelectTime.textContent='Time: '+Time+'s';
+}
+
 let Map=InitMap(INIT_SIZE,INIT_COUNT,INIT_SCORE);
 DrawMap(Map,INIT_SIZE);
 DrawMan(Position);
 ActiveStartButton();
+let Timer=setInterval(CountTime,1000);
+
 console.log(Map);
