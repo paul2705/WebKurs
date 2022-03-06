@@ -86,7 +86,7 @@ const DrawMan = (Position) =>{
 }
 
 const DeleteMan = (Position) =>{
-    /* delete a robot on point Position:{X,Y} in the Map
+    /* Delete a robot on point Position:{X,Y} in the Map
     X: x-axis (Height), Y: y-axis (Width)*/
     let X=Position.ManX,Y=Position.ManY;
     X++; Y++;
@@ -95,6 +95,8 @@ const DeleteMan = (Position) =>{
 }
 
 const CountScore = (Position) =>{
+    /* Count the Score and Check whether the Game is over or not
+    Position:{Height,Width}*/
     let X=Position.ManX,Y=Position.ManY;
     if (Map[X][Y]!==null){
         Score+=Map[X][Y].Bonus;
