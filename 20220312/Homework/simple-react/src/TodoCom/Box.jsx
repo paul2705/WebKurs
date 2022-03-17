@@ -5,13 +5,19 @@ import { List } from './List';
 export function Box() {
   const [newText, setNewText] = useState('');
   const [ListItems, setListItems] = useState([]);
+  const [ListActivation, activateListItems] = useState([]);
   return (
     <div>
       <div>
         <BoxButton
           onClick={() => {
-            // setInputText(prev => `${prev}+`);
-            console.log(document.getElementById('BoxText').value);
+            const Tmp = ListActivation;
+            for (let Index = 0; Index < ListActivation.length; Index++) {
+              Tmp[Index] = 0;
+              const TmpThis = document.getElementById(`button${Index}`);
+              TmpThis.style.backgroundColor = 'green';
+            }
+            activateListItems(Tmp);
           }}
         />
         <input
@@ -30,6 +36,8 @@ export function Box() {
         newText={newText}
         ListItems={ListItems}
         setListItems={setListItems}
+        ListActivation={ListActivation}
+        activateListItems={activateListItems}
       />
     </div>
   );

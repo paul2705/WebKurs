@@ -1,10 +1,18 @@
 import { useEffect } from 'react';
+import { ListItem } from './ListItem';
 
 export function List(props) {
-  const { newText, ListItems, setListItems } = props;
+  const {
+    newText,
+    ListItems,
+    setListItems,
+    ListActivation,
+    activateListItems,
+  } = props;
   useEffect(() => {
     if (newText !== '') {
       setListItems([...ListItems, newText]);
+      activateListItems([...ListActivation, 1]);
     }
     // setNewText(prev => '');
   }, [newText]);
@@ -15,9 +23,13 @@ export function List(props) {
     <div>
       <ul>
         {ListItems.map((Item, Index) => (
-          <li key={Index}>
-            {Index}. {Item}{' '}
-          </li>
+          <ListItem
+            key={Index}
+            Index={Index}
+            ListActivation={ListActivation}
+            activateListItems={activateListItems}>
+            {Index + 1}. {Item}{' '}
+          </ListItem>
         ))}
       </ul>
     </div>
