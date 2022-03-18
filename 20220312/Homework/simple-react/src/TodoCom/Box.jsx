@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { HeadButton } from './HeadButton';
 import { List } from './List';
 import { ListManage } from './ListMange';
@@ -8,7 +8,7 @@ export function Box() {
   const [ListItems, setListItems] = useState([]);
   const [ListActivation, activateListItems] = useState([]);
   const [ListDisplay, hideListItems] = useState([]);
-  console.log('BOX', ListActivation);
+  const [ItemsCount, setItemsCount] = useState(0);
   return (
     <div className="todoapp">
       <h1>TODO</h1>
@@ -34,6 +34,8 @@ export function Box() {
       <HeadButton
         ListActivation={ListActivation}
         activateListItems={activateListItems}
+        ListDisplay={ListDisplay}
+        setItemsCount={setItemsCount}
       />
       <List
         newText={newText}
@@ -43,12 +45,9 @@ export function Box() {
         activateListItems={activateListItems}
         ListDisplay={ListDisplay}
         hideListItems={hideListItems}
+        setItemsCount={setItemsCount}
       />
-      <ListManage
-        ListItems={ListItems}
-        /* ListActivation={ListActivation}
-        ListDisplay={ListDisplay} */
-      />
+      <ListManage ItemsCount={ItemsCount} />
     </div>
   );
 }

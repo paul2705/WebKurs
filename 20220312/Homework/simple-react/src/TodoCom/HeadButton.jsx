@@ -1,5 +1,6 @@
 export function HeadButton(props) {
-  const { ListActivation, activateListItems } = props;
+  const { ListActivation, activateListItems, ListDisplay, setItemsCount } =
+    props;
   return (
     <span>
       <input
@@ -10,7 +11,7 @@ export function HeadButton(props) {
           const Tmp = ListActivation;
           let Cnt = 0;
           for (let Index = 0; Index < ListActivation.length; Index++) {
-            Cnt += Tmp[Index];
+            Cnt += Tmp[Index] + ListDisplay[Index] <= 1 ? 0 : 1;
           }
           if (Cnt > 0) {
             for (let Index = 0; Index < ListActivation.length; Index++) {
@@ -20,6 +21,7 @@ export function HeadButton(props) {
                 TmpThis.checked = true;
               }
             }
+            setItemsCount(0);
           } else {
             for (let Index = 0; Index < ListActivation.length; Index++) {
               Tmp[Index] = 1;
@@ -27,7 +29,9 @@ export function HeadButton(props) {
               if (TmpThis != null) {
                 TmpThis.checked = false;
               }
+              Cnt += Tmp[Index] + ListDisplay[Index] <= 1 ? 0 : 1;
             }
+            setItemsCount(Cnt);
           }
           activateListItems(Tmp);
         }}

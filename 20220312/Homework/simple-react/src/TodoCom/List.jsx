@@ -10,12 +10,14 @@ export function List(props) {
     activateListItems,
     ListDisplay,
     hideListItems,
+    setItemsCount,
   } = props;
   useEffect(() => {
     if (newText !== '') {
       setListItems([...ListItems, newText]);
       activateListItems([...ListActivation, 1]);
       hideListItems([...ListDisplay, 1]);
+      setItemsCount(prev => prev + 1);
     }
     // setNewText(prev => '');
   }, [newText]);
@@ -36,7 +38,8 @@ export function List(props) {
                   ListActivation={ListActivation}
                   activateListItems={activateListItems}
                   ListDisplay={ListDisplay}
-                  hideListItems={hideListItems}>
+                  hideListItems={hideListItems}
+                  setItemsCount={setItemsCount}>
                   {Item}
                 </ListItem>
               );
