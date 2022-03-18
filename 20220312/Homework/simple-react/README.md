@@ -1,9 +1,7 @@
-# Your MWA
+# Todos List
 
-## Prerequisites
-
-1. [Node.js LTS](https://github.com/nodejs/Release)
-    * [Automatically call nvm use](https://github.com/nvm-sh/nvm#deeper-shell-integration)
+*   This repo is the **Homework 4**
+*   *However, there exists some pieces of code only fitting the content of class exercises.*
 
 ## Get Started
 
@@ -25,3 +23,4 @@ pnpm run new
 pnpm run build        # 按产品环境的要求，构建项目
 pnpm run start        # 按产品环境的要求，运行项目
 ```
+
