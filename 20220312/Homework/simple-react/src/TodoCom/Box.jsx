@@ -11,7 +11,7 @@ export function Box() {
   const [ItemsCount, setItemsCount] = useState(0);
   return (
     <div className="todoapp">
-      <h1>TODO</h1>
+      <h1>TODOS</h1>
       <header className="header">
         <input
           type="text"
@@ -47,7 +47,13 @@ export function Box() {
         hideListItems={hideListItems}
         setItemsCount={setItemsCount}
       />
-      <ListManage ItemsCount={ItemsCount} />
+      <ListManage
+        ListItems={ListItems}
+        ItemsCount={ItemsCount}
+        ListActivation={ListActivation}
+        ListDisplay={ListDisplay}
+        hideListItems={hideListItems}
+      />
     </div>
   );
 }

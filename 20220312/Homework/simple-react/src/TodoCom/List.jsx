@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { ListItem } from './ListItem';
 
 export function List(props) {
@@ -24,39 +24,29 @@ export function List(props) {
   useEffect(() => {
     document.getElementById('BoxText').value = '';
   }, [ListItems]);
-  let LIST = null;
-  LIST = useMemo(
-    () => (
-      <section>
-        <ul className="todo-list">
-          {ListItems.map((Item, Index) => {
-            if (ListDisplay[Index] === 1) {
-              return (
-                <ListItem
-                  key={Index}
-                  Index={Index}
-                  ListActivation={ListActivation}
-                  activateListItems={activateListItems}
-                  ListDisplay={ListDisplay}
-                  hideListItems={hideListItems}
-                  setItemsCount={setItemsCount}>
-                  {Item}
-                </ListItem>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </ul>
-      </section>
-    ),
-    [ListItems, ListActivation, ListDisplay],
-  );
-  return LIST == null ? (
+  return (
     <section>
-      <ul className="todo-list"></ul>
+      <ul className="todo-list">
+        {ListItems.map((Item, Index) => {
+          if (ListDisplay[Index] === 1) {
+            return (
+              <ListItem
+                key={Index}
+                Index={Index}
+                ListItems={ListItems}
+                setListItems={setListItems}
+                ListActivation={ListActivation}
+                activateListItems={activateListItems}
+                ListDisplay={ListDisplay}
+                hideListItems={hideListItems}
+                setItemsCount={setItemsCount}
+              />
+            );
+          } else {
+            return null;
+          }
+        })}
+      </ul>
     </section>
-  ) : (
-    LIST
   );
 }

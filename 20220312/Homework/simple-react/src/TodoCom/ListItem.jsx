@@ -1,15 +1,37 @@
+import { useState } from 'react';
+
+function classNames(props) {
+  const { editing, completed } = props;
+  if (editing) {
+    return 'editing';
+  } else if (completed) {
+    return 'completed';
+  } else {
+    return 'view';
+  }
+}
+
 export function ListItem(props) {
   const {
     Index,
+    ListItems,
+    setListItems,
     ListActivation,
     activateListItems,
     ListDisplay,
     hideListItems,
     setItemsCount,
-    children,
   } = props;
+  const [IsEditing, setEditing] = useState(false);
+
   return (
-    <li key={Index} className="ListItem" id={`ListItem${Index}`}>
+    <li
+      key={Index}
+      className={classNames({
+        editing: IsEditing,
+        completed: ListActivation[Index] === 1 ? 0 : 1,
+      })}
+      id={`ListItem${Index}`}>
       <div className="view">
         <input
           type="checkbox"
@@ -28,7 +50,12 @@ export function ListItem(props) {
               setItemsCount(prev => prev + 1);
             }
           }}></input>
-        <label>{children}</label>
+        <label
+          onDoubleClick={() => {
+            setEditing(true);
+          }}>
+          {ListItems[Index]}
+        </label>
         <button
           className="destroy"
           type="button"
@@ -41,6 +68,29 @@ export function ListItem(props) {
             setItemsCount(prev => prev - ListActivation[Index]);
           }}></button>
       </div>
+      <input
+        className="edit"
+        id={`edit${Index}`}
+        onBlur={() => {
+          const Tmp = ListItems;
+          Tmp[Index] = String(document.getElementById(`edit${Index}`).value);
+          if (Tmp[Index] === '') {
+            return;
+          }
+          setListItems(Tmp);
+          setEditing(false);
+        }}
+        onKeyDown={e => {
+          if (e.keyCode === 13) {
+            const Tmp = ListItems;
+            Tmp[Index] = String(document.getElementById(`edit${Index}`).value);
+            if (Tmp[Index] === '') {
+              return;
+            }
+            setListItems(Tmp);
+            setEditing(false);
+          }
+        }}></input>
     </li>
   );
 }
