@@ -5,18 +5,21 @@ export function ItemCheckbox(props) {
       type="checkbox"
       id={`button${Index}`}
       className="toggle"
-      onClick={() => {
-        const Tmp = ListActivation;
-        Tmp[Index] = Tmp[Index] === 0 ? 1 : 0;
-        activateListItems(Tmp);
+      checked={ListActivation[Index] === 0 ? 1 : 0}
+      onChange={() => {
         const TmpThis = document.getElementById(`button${Index}`);
-        if (Tmp[Index] === 0) {
+        if (ListActivation[Index] === 0) {
           TmpThis.checked = true;
           setItemsCount(prev => prev - 1);
         } else {
           TmpThis.checked = false;
           setItemsCount(prev => prev + 1);
         }
+      }}
+      onClick={() => {
+        const Tmp = ListActivation;
+        Tmp[Index] = Tmp[Index] === 0 ? 1 : 0;
+        activateListItems(Tmp);
       }}></input>
   );
 }

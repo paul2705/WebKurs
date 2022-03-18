@@ -10,6 +10,7 @@ export function Box() {
   const [ListActivation, activateListItems] = useState([]);
   const [ListDisplay, hideListItems] = useState([]);
   const [ItemsCount, setItemsCount] = useState(0);
+  const [ListDisplayMode, setDisplayMode] = useState([0, 1]);
   return (
     <div className="todoapp">
       <h1>TODOS</h1>
@@ -31,6 +32,7 @@ export function Box() {
         ListDisplay={ListDisplay}
         hideListItems={hideListItems}
         setItemsCount={setItemsCount}
+        ListDisplayMode={ListDisplayMode}
       />
       <ListManage
         ListItems={ListItems}
@@ -38,6 +40,7 @@ export function Box() {
         ListActivation={ListActivation}
         ListDisplay={ListDisplay}
         hideListItems={hideListItems}
+        setDisplayMode={setDisplayMode}
       />
     </div>
   );

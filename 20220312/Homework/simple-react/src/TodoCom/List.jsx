@@ -11,6 +11,7 @@ export function List(props) {
     ListDisplay,
     hideListItems,
     setItemsCount,
+    ListDisplayMode,
   } = props;
 
   useEffect(() => {
@@ -31,7 +32,11 @@ export function List(props) {
     <section>
       <ul className="todo-list">
         {ListItems.map((Item, Index) => {
-          if (ListDisplay[Index] === 1) {
+          if (
+            (ListActivation[Index] === ListDisplayMode[0] ||
+              ListActivation[Index] === ListDisplayMode[1]) &&
+            ListDisplay[Index] === 1
+          ) {
             return (
               <ListItem
                 key={Index}
