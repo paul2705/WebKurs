@@ -12,6 +12,7 @@ export function List(props) {
     hideListItems,
     setItemsCount,
   } = props;
+
   useEffect(() => {
     if (newText !== '') {
       setListItems([...ListItems, newText]);
@@ -21,9 +22,11 @@ export function List(props) {
     }
     // setNewText(prev => '');
   }, [newText]);
+
   useEffect(() => {
     document.getElementById('BoxText').value = '';
   }, [ListItems]);
+
   return (
     <section>
       <ul className="todo-list">
