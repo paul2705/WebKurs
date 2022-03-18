@@ -1,23 +1,40 @@
 export function ListItem(props) {
-  const { Index, ListActivation, activateListItems, children } = props;
+  const {
+    Index,
+    ListActivation,
+    activateListItems,
+    ListDisplay,
+    hideListItems,
+    children,
+  } = props;
   return (
-    <li key={Index}>
-      <button
-        type="button"
+    <li key={Index} className="ListItem" id={`ListItem${Index}`}>
+      <input
+        type="checkbox"
         id={`button${Index}`}
-        className="ListButton"
+        className="toggle"
         onClick={() => {
           const Tmp = ListActivation;
           Tmp[Index] = Tmp[Index] === 0 ? 1 : 0;
           activateListItems(Tmp);
           const TmpThis = document.getElementById(`button${Index}`);
           if (Tmp[Index] === 0) {
-            TmpThis.style.backgroundColor = 'green';
+            TmpThis.checked = true;
           } else {
-            TmpThis.style.backgroundColor = '';
+            TmpThis.checked = false;
           }
+        }}></input>
+      <label>{children}</label>
+      <button
+        className="destroy"
+        type="button"
+        onClick={() => {
+          const Tmp = ListDisplay;
+          Tmp[Index] = 0;
+          hideListItems(Tmp);
+          const TmpThis = document.getElementById(`ListItem${Index}`);
+          TmpThis.style.display = 'none';
         }}></button>
-      {children}
     </li>
   );
 }

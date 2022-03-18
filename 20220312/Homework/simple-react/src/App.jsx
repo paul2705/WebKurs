@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 // import { Button } from './component/Button';
 // import { FakeDead } from './component/FakeDead';
 // import { Father } from './component/Father';
@@ -7,12 +7,7 @@
 import { Box } from './TodoCom/Box';
 
 function App() {
-  return (
-    <div>
-      <h1>TODO</h1>
-      <Box />
-    </div>
-  );
+  return <Box />;
 }
 
 export default App;
