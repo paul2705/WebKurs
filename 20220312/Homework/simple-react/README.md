@@ -1,7 +1,7 @@
 # Todos List
 
 *   This repo is the **Homework 4**
-*   *However, there exists some pieces of code only fitting the content of class exercises.*
+*   ~~*However, there exists some pieces of code only fitting the content of class exercises.*~~
 
 ## Get Started
 
