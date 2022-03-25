@@ -140,8 +140,8 @@ Net.createServer((Server)=>{
     Req.on('ReceiveGuess',()=>{
         console.log('Server Receive Guess:'); Req.Print();
         let Tmp=Req.Msg.RBody.Data.guess;
-        if (Tmp!==Ans) Req.EnCode(1,1,{respond: true, Answer: false});
-        else Req.EnCode(1,1,{respond: true, Answer: true});
+        if (Tmp!==Ans) Req.EnCode(1,2,{respond: true, Answer: false});
+        else Req.EnCode(1,2,{respond: true, Answer: true});
         Server.write(Req.ToString());
     });
     Req.on('Hello',()=>{
