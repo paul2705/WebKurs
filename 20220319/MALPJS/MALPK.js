@@ -35,9 +35,9 @@ class _RHead{
     Print(){ 
         /* Debug mood */
         console.log('\t Head: ',
-                        '\n\t\tVersion: ',this.Version,
-                        '\n\t\tServer: ',this.Server,
-                        '\n\t\tLen: ',this.Len); 
+                    '\n\t\tVersion: ',this.Version,
+                    '\n\t\tServer: ',this.Server,
+                    '\n\t\tLen: ',this.Len); 
     }
 };
 
@@ -93,7 +93,7 @@ class _Msg{
                 this.RBody.DeCode(TmpMsg.slice(12),this.RHead.Len));
     }
     Print(){ 
-        /* debug mood */
+        /* Debug mood */
         this.RHead.Print(); this.RBody.Print(); 
     }
 };
@@ -108,17 +108,18 @@ class Request extends EventEmitter{
     DeCode(TmpMsg){ 
         if (this.Msg.DeCode(TmpMsg)){
             this.State=STATE.END;
-            this.emit('Receive');
+            if (this.Msg.RBody.Data.first) this.emit('Hello');
+            else this.emit('ReceiveGuess');
             return true;
         } else return false;
     }
     Print(){ this.Msg.Print(); }
-}
+};
 
 
 
 function __Test(){
-    /* debug mood */
+    /* Debug mood */
     Req=new Request();
     Req.EnCode(1,1,JSON.stringify({hello: 'world'}));
     console.log(Req.ToString());
@@ -129,31 +130,58 @@ function __Test(){
 // __Test();
 
 
-/* create a Server using net-Module */
+/* create a Server using net-Module. 
+The Server will set an integer in [0,10] waiting for Client to guess. */
 Net.createServer((Server)=>{
     let Req=new Request();
-    Req.on('Receive',()=>{
-        console.log('Server Receive Message:'); Req.Print();
-        Req.EnCode(1,1,{respond: true, data: 'Paul120090105'});
+    const Ans=Math.floor(Math.random()*10);
+    console.log('The set Answer is: ',Ans);
+
+    Req.on('ReceiveGuess',()=>{
+        console.log('Server Receive Guess:'); Req.Print();
+        let Tmp=Req.Msg.RBody.Data.guess;
+        if (Tmp!==Ans) Req.EnCode(1,1,{respond: true, Answer: false});
+        else Req.EnCode(1,1,{respond: true, Answer: true});
         Server.write(Req.ToString());
     });
+    Req.on('Hello',()=>{
+        console.log('Server Receive HELLO from a new Client:'); Req.Print();
+        Req.EnCode(1,1,{respond: true, State: true});
+        Server.write(Req.ToString());
+    })
     Server.on('data',(TmpMsg)=>{ Req.DeCode(TmpMsg); });
     Server.on('end',()=>{ Req=null; });
-}).listen(5000);
+}).listen(8080);
 
-/* create a Socket sending Msg to the Server */
-setTimeout(()=>{
-    const Socket=Net.connect(5000);
-    Socket.on('connect',()=>{
 
-        Req=new Request();
-        Req.EnCode(1,1,{hello: 'world'});
-        Socket.write(Req.ToString());
+/* create a Client to guess the integer previously set on the Server.
+The Client will guess once every second. */
+const Socket=Net.connect(8080);
+const HandleSend=setInterval(()=>{ Socket.emit('Send'); },1000);
+let LastGuess;
+SocketReq=new Request();
+SocketReq.on('Hello',()=>{
+    console.log('Client Receive Hello from Server:'); SocketReq.Print();
+});
+SocketReq.on('ReceiveGuess',()=>{
+    console.log('Client Receive Judgement from Server:'); SocketReq.Print();
+    if (SocketReq.Msg.RBody.Data.Answer===true){
+        Socket.emit('end');
+        clearInterval(HandleSend);
+    }
+});
+Socket.on('connect',()=>{
+    SocketReq.EnCode(1,1,{first: true, hello: 'world'});
+    Socket.write(SocketReq.ToString());
+});
+Socket.on('Send',()=>{
+    LastGuess=Math.floor(Math.random()*10);
+    SocketReq.EnCode(1,2,{first: false, guess: LastGuess});
+    Socket.write(SocketReq.ToString());
+});
+Socket.on('data',(TmpMsg)=>{ SocketReq.DeCode(TmpMsg); });
+Socket.on('end',()=>{ 
+    console.log(`The Client Guess the CORRECT number! \n It is ${LastGuess}`); 
+    SocketReq=null; 
+});
 
-        Req.on('Receive',()=>{
-            console.log('Client Receive Message:'); Req.Print();
-        });
-        Socket.on('data',(TmpMsg)=>{ Req.DeCode(TmpMsg); });
-        Socket.on('end',()=>{ Req=null; });
-    });
-},3000);
